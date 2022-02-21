@@ -1,6 +1,7 @@
 package org.fleck.models;
 
 import java.math.BigDecimal;
+import java.util.Objects;
 
 public final class Product {
 
@@ -29,6 +30,17 @@ public final class Product {
     public Double getAllAppliedTaxes() {
         // TODO: calc and round properly
         return 0.00;
+    }
+
+    @Override
+    public boolean equals(Object otherProduct) {
+        if (this == otherProduct) return true;
+        if (otherProduct == null || getClass() != otherProduct.getClass()) return false;
+        Product product = (Product) otherProduct;
+        return imported == product.imported
+                && Objects.equals(productName, product.productName)
+                && productCategory == product.productCategory
+                && Objects.equals(netPrice, product.netPrice);
     }
 
 }

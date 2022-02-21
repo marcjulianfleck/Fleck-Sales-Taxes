@@ -1,0 +1,8 @@
+1 book at 9.99
+1 imported book at 9.99
+1 music CD at 14.98
+1 imported music CD at 14.98
+1 chocolate bar at 1.12
+1 imported chocolate bar at 1.12
+1 bottle of perfume at 72.10
+1 bottle of imported perfume at 72.10
