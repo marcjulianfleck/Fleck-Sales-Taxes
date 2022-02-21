@@ -21,10 +21,12 @@ final public class CashDesk {
         purchase = new LinkedList<>();
     }
 
-    public void scanNewBasket(String basketPath) {
+    public LinkedList<Product> scanNewBasket(String basketPath) {
         //TODO: retrieve and create products from "basketPath" and add them to the current purchase
         Product demoProduct = new Product("book", false, 12.49);
         purchase.add(demoProduct);
+
+        return purchase;
     }
 
     public void checkoutAndPrintReceiptOfPurchase() {
