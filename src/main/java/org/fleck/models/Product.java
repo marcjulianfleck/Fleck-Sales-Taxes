@@ -5,6 +5,8 @@ import java.util.Objects;
 
 public final class Product {
 
+    private final String IMPORTED_PREFIX = "imported ";
+
     private final String productName;
     private final ProductCategory productCategory;
     private final boolean imported;
@@ -18,8 +20,7 @@ public final class Product {
     }
 
     public String getProductName() {
-        // TODO: generate and return name properly
-        return productName;
+        return imported ? IMPORTED_PREFIX + productName : productName;
     }
 
     public Double getGrossPrice() {
