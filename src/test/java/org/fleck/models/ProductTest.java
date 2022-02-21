@@ -4,28 +4,14 @@ import junit.framework.TestCase;
 
 public class ProductTest extends TestCase {
 
-    private Product testProductBook;
-    private Product testProductBookImported;
-    private Product testProductCD;
-    private Product testProductCDImported;
-    private Product testProductChocolate;
-    private Product testProductChocolateImported;
-    private Product testProductPerfume;
-    private Product testProductPerfumeImported;
-
-    @Override
-    public void setUp() throws Exception {
-        super.setUp();
-
-        testProductBook = new Product("book", false, 9.99);
-        testProductBookImported = new Product("book", true, 9.99);
-        testProductCD = new Product("CD", false, 14.98);
-        testProductCDImported = new Product("music CD", true, 14.98);
-        testProductChocolate = new Product("chocolate bar", false, 1.12);
-        testProductChocolateImported = new Product("chocolate bar", true, 1.12);
-        testProductPerfume = new Product("bottle of perfume", false, 72.10);
-        testProductPerfumeImported = new Product("bottle of perfume", true, 72.10);
-    }
+    private final Product testProductBook = new Product("book", false, 9.99);
+    private final Product testProductBookImported = new Product("book", true, 9.99);
+    private final Product testProductCD = new Product("CD", false, 14.98);
+    private final Product testProductCDImported = new Product("music CD", true, 14.98);
+    private final Product testProductChocolate = new Product("chocolate bar", false, 1.12);
+    private final Product testProductChocolateImported = new Product("chocolate bar", true, 1.12);
+    private final Product testProductPerfume = new Product("bottle of perfume", false, 72.10);
+    private final Product testProductPerfumeImported = new Product("bottle of perfume", true, 72.10);
 
     public void testGetProductName() {
         assertEquals("book", testProductBook.getProductName());
