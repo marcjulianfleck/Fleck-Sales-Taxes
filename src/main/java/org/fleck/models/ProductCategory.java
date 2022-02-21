@@ -16,6 +16,17 @@ public enum ProductCategory {
         this.taxable = taxable;
     }
 
+    /**
+     * <p> This method determines the correct category of a string which describes a product</p>
+     *
+     * <p> The input {@code "book" or "chocolate"}, for example, yields to {@code ProductCategory.Book or ProductCategory.Food}
+     *
+     * @param  productName
+     *         A string which contains the name of the product to which a category
+     *         should be found.
+     *
+     * @return  The {@code ProductCategory} which fits to the input string.
+     */
     public static ProductCategory getProductCategory(String productName) {
         if (Pattern.compile("pills|headache").matcher(productName).find()) {
             return ProductCategory.MEDICAL;
@@ -30,6 +41,5 @@ public enum ProductCategory {
         } else {
             return ProductCategory.UNKNOWN;
         }
-
     }
 }
