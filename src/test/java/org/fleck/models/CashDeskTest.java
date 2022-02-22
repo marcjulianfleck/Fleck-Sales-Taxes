@@ -3,6 +3,7 @@ package org.fleck.models;
 import junit.framework.TestCase;
 
 import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.io.PrintStream;
 import java.util.LinkedList;
 
@@ -23,35 +24,22 @@ public class CashDeskTest extends TestCase{
     private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
     private final PrintStream originalOut = System.out;
 
-    @Override
-    public void setUp() throws Exception {
-        super.setUp();
-
-        importedTestBasket = CashDesk.getInstance().scanNewBasket("assets/testInput");
-
-        System.setOut(new PrintStream(outContent));
-    }
-
     public void testStaticGetInstance() {
         assertEquals(CashDesk.getInstance(), CashDesk.getInstance());
     }
 
-    public void testScanNewBasket() {
+    public void testScanNewBasket() throws IOException {
+        importedTestBasket = CashDesk.getInstance().scanNewBasket("assets/testInput.txt");
         assertEquals(2, importedTestBasket.size());
         assertTrue(importedTestBasket.contains(testProductBook));
         assertTrue(importedTestBasket.contains(testProductPerfumeImported));
     }
 
     public void testCheckoutAndPrintReceiptOfPurchase() {
+        System.setOut(new PrintStream(outContent));
         CashDesk.getInstance().checkoutAndPrintReceiptOfPurchase();
-        //assertEquals(EXPECTED_CONSOLE_OUTPUT, outContent.toString());
+        assertEquals(EXPECTED_CONSOLE_OUTPUT, outContent.toString());
         assertEquals(0, importedTestBasket.size());
-    }
-
-    @Override
-    public void tearDown() throws Exception {
-        super.tearDown();
-
         System.setOut(originalOut);
     }
 }
