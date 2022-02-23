@@ -5,6 +5,7 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.Iterator;
 import java.util.LinkedList;
+import java.util.Locale;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Stream;
@@ -46,21 +47,29 @@ final public class CashDesk {
         return purchase;
     }
 
+    /**
+     *This method prints the receipt for the current purchase
+     *(for all the {@code "Products"} in {@code "LinkedList<Product>"}) into the console.
+     * Afterwards it clears the purchase {@code "LinkedList<Product>"})
+     */
     public void checkoutAndPrintReceiptOfPurchase() {
-        //TODO: calculate total and taxes and print the receipt to the console and delete the current purchase
         Double salesTaxes = 0.00;
         Double total = 0.00;
 
         Iterator basketIt = purchase.iterator();
+
         while (basketIt.hasNext()) {
             Product nextProduct = (Product) basketIt.next();
             salesTaxes += nextProduct.getAllAppliedTaxes();
             total += nextProduct.getGrossPrice();
-            System.out.println("1 " + nextProduct.getProductName() + ": " + nextProduct.getGrossPrice());
+            System.out.println("1 "
+                    + nextProduct.getProductName()
+                    + ": "
+                    + String.format(Locale.ENGLISH, "%.2f", nextProduct.getGrossPrice()));
         }
 
-        System.out.println("Sales Taxes: " + salesTaxes);
-        System.out.println("Total: 29.83" + total);
+        System.out.println("Sales Taxes: " + String.format(Locale.ENGLISH, "%.2f", salesTaxes));
+        System.out.println("Total: " + String.format(Locale.ENGLISH, "%.2f", total));
 
         purchase.clear();
     }
