@@ -49,11 +49,6 @@ public final class Product {
         return  calcBasicSalesTaxes().add(calcImportedSalesTaxes()).doubleValue();
     }
 
-    /**
-     *This method returns the basic sales taxes of the product (if applicable) correctly rounded up to the nearest 0.05.
-     *
-     * @return the basic sales taxes of the product correctly rounded up to the nearest 0.05 as a {@code "BigDecimal"}.
-     */
     private BigDecimal calcBasicSalesTaxes() {
         BigDecimal basicSalesTaxes = productCategory.taxable
                 ? netPrice.multiply(BASIC_SALES_TAX_RATE).divide(new BigDecimal(100))
@@ -62,11 +57,6 @@ public final class Product {
         return roundToNearest5ct(basicSalesTaxes.setScale(2, RoundingMode.HALF_UP));
     }
 
-    /**
-     *This method returns the imported sales taxes of the product (if applicable) correctly rounded up to the nearest 0.05.
-     *
-     * @return the  imported sales taxes of the product correctly rounded up to the nearest 0.05 as a {@code "BigDecimal"}.
-     */
     private BigDecimal calcImportedSalesTaxes() {
         BigDecimal importedSalesTaxes = imported
                 ? netPrice.multiply(IMPORTED_SALES_TAX_RATE).divide(new BigDecimal(100))
@@ -75,14 +65,6 @@ public final class Product {
         return roundToNearest5ct(importedSalesTaxes.setScale(2, RoundingMode.HALF_UP));
     }
 
-    /**
-     *This method rounds the inputted value ({@code "BigDecimal"}) up to the nearest 0.05 and returns it.
-     *
-     * @param  value
-     *         A ({@code "BigDecimal"}) which should be rounded up to the nearest 0.05.
-     *
-     * @return the inputted value correctly rounded up to the nearest 0.05 as a {@code "BigDecimal"}.
-     */
     private BigDecimal roundToNearest5ct(BigDecimal value) {
         Double nearest5ct = Math.ceil((value.doubleValue() * 20.0)) / 20.0;
         return new BigDecimal(nearest5ct).setScale(2, RoundingMode.HALF_UP);
