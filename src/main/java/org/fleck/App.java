@@ -15,16 +15,23 @@ public class App {
 
     private static final String SEPARATOR = "-----------------------------------";
 
-    // TODO: Handle Exceptions appropriately!
-    public static void main(String[] importBasketsPaths) throws IOException {
+    public static void main(String[] importBasketsPaths) {
 
         String[] queuedBaskets = (importBasketsPaths.length > 0) ? importBasketsPaths : DEFAULT_BASKETS_PATHS;
 
         for (String basket : queuedBaskets) {
-            if (new File(basket).exists()){
-                CashDesk.getInstance().scanNewBasket(basket);
-                CashDesk.getInstance().checkoutAndPrintReceiptOfPurchase();
-                System.out.println(SEPARATOR);
+            if (new File(basket).exists()) {
+                try {
+                    CashDesk.getInstance().scanNewBasket(basket);
+                    CashDesk.getInstance().checkoutAndPrintReceiptOfPurchase();
+                    System.out.println(SEPARATOR);
+                } catch (IOException ioException) {
+                    System.err.println("Something went wrong with the " + basket + " file.");
+                } catch (IllegalStateException illegalStateException) {
+                    System.err.println("Bad formatted " + basket + " file.");
+                }
+            } else {
+                System.err.println(basket + " does not exist.");
             }
         }
     }

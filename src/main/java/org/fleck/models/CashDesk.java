@@ -39,10 +39,9 @@ final public class CashDesk {
      *
      * @throws IOException
      */
-    public LinkedList<Product> scanNewBasket(String basketPath) throws IOException {
-        try (Stream<String> stream = Files.lines(Paths.get(basketPath))) {
-            stream.forEach(this::addNewProduct);
-        }
+    public LinkedList<Product> scanNewBasket(String basketPath) throws IOException, IllegalStateException {
+        Stream<String> stream = Files.lines(Paths.get(basketPath));
+        stream.forEach(this::addNewProduct);
 
         return purchase;
     }
@@ -74,7 +73,7 @@ final public class CashDesk {
         purchase.clear();
     }
 
-    private void addNewProduct(String newProductString) {
+    private void addNewProduct(String newProductString) throws IllegalStateException {
         short quantity = scanQuantity(newProductString);
         String productName = scanProductName(newProductString);
         boolean isImported = isImported(newProductString);
@@ -86,7 +85,7 @@ final public class CashDesk {
         }
     }
 
-    private short scanQuantity(String newProductString) {
+    private short scanQuantity(String newProductString) throws IllegalStateException {
         Pattern quantityPattern = Pattern.compile("^[\\d+]+");
         Matcher quantityMatcher = quantityPattern.matcher(newProductString);
         quantityMatcher.find();
@@ -94,7 +93,7 @@ final public class CashDesk {
         return Short.parseShort(quantityMatcher.group(0));
     }
 
-    private String scanProductName(String newProductString) {
+    private String scanProductName(String newProductString) throws IllegalStateException {
         Pattern productNamePattern = Pattern.compile("(?!^\\d)[A-Za-z].+(?=\\sat\\s\\d+.\\d+$)");
         Matcher productNameMatcher = productNamePattern.matcher(newProductString);
         productNameMatcher.find();
@@ -107,7 +106,7 @@ final public class CashDesk {
         return importedPattern.matcher(newProductString).find();
     }
 
-    private Double scanNetPrice(String newProductString) {
+    private Double scanNetPrice(String newProductString) throws IllegalStateException {
         Pattern pricePattern = Pattern.compile("\\d+.\\d+$");
         Matcher priceMatcher = pricePattern.matcher(newProductString);
         priceMatcher.find();
