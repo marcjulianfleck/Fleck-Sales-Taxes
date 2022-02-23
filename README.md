@@ -80,7 +80,6 @@ The JUnit tests can be found in [`src/test/java/org/fleck/models`](https://githu
 
 Test results can be seen in the following figure.
 
-![Test results Fleck Sales Taxes](https://github.com/marcjulianfleck/Fleck-Sales-Taxes/tree/master/testResults.png)
-
+![Test results Fleck Sales Taxes](https://github.com/marcjulianfleck/Fleck-Sales-Taxes/blob/master/testResults.png?raw=true)
 
 To run the test by yourself open the project with an IDE and run it there with the appropriate configurations. 
