@@ -3,6 +3,7 @@ package org.fleck;
 import org.fleck.models.CashDesk;
 
 import java.io.File;
+import java.io.IOException;
 
 public class App {
 
@@ -14,7 +15,8 @@ public class App {
 
     private static final String SEPARATOR = "-----------------------------------";
 
-    public static void main(String[] importBasketsPaths) {
+    // TODO: Handle Exceptions appropriately!
+    public static void main(String[] importBasketsPaths) throws IOException {
 
         String[] queuedBaskets = (importBasketsPaths.length > 0) ? importBasketsPaths : DEFAULT_BASKETS_PATHS;
 
