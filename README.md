@@ -40,11 +40,11 @@ Write an application that prints out the receipt details for these shopping bask
 ### Assumptions
 Before approaching the problem I made the following assumptions:
 * The application should be written in Java and be runnable with a JAR-Archive.
-* The input data (baskets) is available as formatted txt files as i.e. done in `asstes/input1.txt`, and must be provided as arguments (paths) to the JAR.
+* The input data (baskets) is available as formatted txt files as i.e. done in [`assets/input1.txt`](https://github.com/marcjulianfleck/Fleck-Sales-Taxes/blob/master/assets/input1.txt), and must be provided as arguments (paths) to the JAR.
 * The mentioned price in the input files are the net price.
 * If the quantity is higher than one, the provided price still indicates the net price of only one product.
 * Imported products have the word "imported" somewhere inside the item description.
-* If no  txt file path is provided to the application (JAR), it will fall back to the three default input files in `asstes/`.
+* If no  txt file path is provided to the application (JAR), it will fall back to the three default input files in [`assets/`](https://github.com/marcjulianfleck/Fleck-Sales-Taxes/tree/master/assets).
 * The output (receipts) of the applications should get printed inside the console. No GUI is implemented.
 * If wrong formatted file paths are provided, a hint is printed to the console as well as if not file can be found on the provided path.
 
@@ -63,7 +63,7 @@ However, I definitely would work with JSON files in any other project since a lo
 $ git clone https://github.com/marcjulianfleck/Fleck-Sales-Taxes.git
 $ cd Fleck-Sales-Taxes/
 ```
-To run with the default input txt files inside `asstes/` just run:
+To run with the default input txt files inside [`asstes/`](https://github.com/marcjulianfleck/Fleck-Sales-Taxes/tree/master/assets) just run:
 ```
 $ java -jar SalesTaxes.jar
 ```
@@ -75,3 +75,12 @@ $ java -jar SalesTaxes.jar path_to_own_input_txt_file-1 path_to_own_input_txt_fi
 Of course the project also can be opened in an IDE like IntelliJ IDEA and executed there.
 
 ### Tests
+The whole implementation process was test driven with JUnit (v4.13.1).
+The JUnit tests can be found in [`src/test/java/org/fleck/models`](https://github.com/marcjulianfleck/Fleck-Sales-Taxes/tree/master/src/test/java/org/fleck/models).
+
+Test results can be seen in the following figure.
+
+![Test results Fleck Sales Taxes](https://github.com/marcjulianfleck/Fleck-Sales-Taxes/tree/master/testResults.png)
+
+
+To run the test by yourself open the project with an IDE and run it there with the appropriate configurations. 
